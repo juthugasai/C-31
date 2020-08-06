@@ -1,3 +1,50 @@
+//Types of data
+
+//String
+var string = "This is a string";
+console.log(string);
+
+//Number
+var num = 100;
+console.log(num);
+
+//Boolean
+var bool = true;
+console.log(bool);
+
+//Undefined
+var object;
+console.log(object);
+
+//Null (reassigning the previous undefined variable)
+object = null;
+console.log(object);
+
+//ARRAY
+
+//Array holding similar data type
+var arr1 = [1, 2, 3, 4, 5];
+console.log(arr1);
+
+//Array holding different data type
+var arr2 = ["Sai", 13, true];
+console.log(arr2);
+console.log(arr2[0]);
+
+//Array storing a list of arrays
+var arr3 = [[1,2],  [2,3], [3,4]];
+console.log(arr3);
+console.log(arr3[1]);
+console.log(arr3[1][1]);
+
+arr3.push("Sai");
+console.log(arr3);
+
+arr3.pop();
+console.log(arr3);
+
+
+
 const Engine = Matter.Engine;
 const World= Matter.World;
 const Bodies = Matter.Bodies;
@@ -7,7 +54,7 @@ var engine, world;
 var box1, pig1,pig3;
 var backgroundImg,platform;
 var bird, slingshot;
-
+var gamestate="onsling";
 
 function preload() {
     backgroundImg = loadImage("sprites/bg.png");
@@ -69,16 +116,44 @@ function draw(){
 }
 
 function mouseDragged(){
-    Matter.Body.setPosition(bird.body, {x: mouseX , y: mouseY});
+   if(gamestate!== "launched"){ //gamestate is not equal to launched
+       Matter.Body.setPosition(bird.body, {x: mouseX , y: mouseY});
+   }
+
 }
 
 
 function mouseReleased(){
     slingshot.fly();
+    gamestate="launched";
 }
 
 function keyPressed(){
     if(keyCode === 32){
-        slingshot.attach(bird.body);
+       /// slingshot.attach(bird.body);
     }
 }
+
+/*
+
+Types of data:
+
+1. Null : nothing/empty
+2. String: sequence of characters stored inside ".."
+3. Number: numerical values
+4. Boolean values: True & false (0 & 1/ on & off)
+5. Undefined: no value assigned
+
+
+DATA STRUCTURES:
+- hold multiple values
+ARRAY
+- store a list of similar or different data types
+- separated by a comma
+- stored inside [..]
+- Values inside an array are called elements
+- length of an array = no. of elements it contains
+- Each element has an index no. associated with it
+- Index no. starts from 0 till (length of array - 1)
+
+*/
